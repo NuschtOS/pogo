@@ -1,0 +1,127 @@
+#pretty
+{
+  boot = {
+    initrd = {
+      luks = {
+        devices = {
+          server10-root = {
+            bypassWorkqueues = false;
+            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203733F-part2";
+            name = "server10-root";
+          };
+        };
+      };
+    };
+    loader = {
+      grub = {
+        devices = [ ];
+      };
+    };
+  };
+  fileSystems = {
+    "/" = {
+      depends = [ ];
+      device = "server10-root/root";
+      fsType = "zfs";
+      mountPoint = "/";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/boot" = {
+      depends = [ ];
+      device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203733F-part1";
+      fsType = "vfat";
+      mountPoint = "/boot";
+      neededForBoot = false;
+      options = [
+        "defaults"
+      ];
+    };
+    "/etc" = {
+      depends = [ ];
+      device = "server10-root/data/etc";
+      fsType = "zfs";
+      mountPoint = "/etc";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/home" = {
+      depends = [ ];
+      device = "server10-root/home";
+      fsType = "zfs";
+      mountPoint = "/home";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix" = {
+      depends = [ ];
+      device = "server10-root/nix";
+      fsType = "zfs";
+      mountPoint = "/nix";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix/store" = {
+      depends = [ ];
+      device = "server10-root/nix/store";
+      fsType = "zfs";
+      mountPoint = "/nix/store";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix/var" = {
+      depends = [ ];
+      device = "server10-root/nix/var";
+      fsType = "zfs";
+      mountPoint = "/nix/var";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/backup" = {
+      depends = [ ];
+      device = "server10-root/data/backup";
+      fsType = "zfs";
+      mountPoint = "/var/backup";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/lib" = {
+      depends = [ ];
+      device = "server10-root/data/lib";
+      fsType = "zfs";
+      mountPoint = "/var/lib";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+  };
+  swapDevices = [ ];
+}
