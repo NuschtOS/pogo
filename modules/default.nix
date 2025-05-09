@@ -115,11 +115,11 @@ in
       devices = lib.mkIf (cfg != [ ]) (lib.foldl' (a: b: lib.recursiveUpdate a b) { } (map
         (disk:
           let
-            diskName = if disk.name != "" then "-${disk.name}" else "";
+            diskName = if disk.name == "" then "" else "-"+disk.name;
             luksName = "${config.networking.hostName}${diskName}";
             withBoot = disk.withBoot || disk.withBootPlacebo;
             version = config.disko.stateVersion;
-            zfsName = "${config.networking.hostName}-${disk.zpoolName}";
+            zfsName = config.networking.hostName + (if disk.zpoolName == "" then "" else "-"+disk.zpoolName);
             zfs = {
               size = "100%FREE";
               content = {
