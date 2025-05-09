@@ -1,6 +1,6 @@
 # Pogo
 
-Pogo is an opinionated module for Nix building on top of [disko](http://github.com/nix-community/disko/).
+Pogo is an opinionated module for NixOS building on top of [disko](http://github.com/nix-community/disko/).
 Right now it offers a high level abstraction for ZFS including good defaults and a starter dataset layout.
 
 ## Design
