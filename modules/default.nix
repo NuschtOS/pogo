@@ -18,7 +18,6 @@ in
 
           name = lib.mkOption {
             type = lib.types.str;
-            default = null;
             example = "ssd0";
             description = "Name of the disk.";
           };
