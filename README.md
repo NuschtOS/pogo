@@ -18,7 +18,7 @@ If there are regressions, a specific test for those should be created to make su
 To run the snapshot tests open a nix dev shell with `nix develop` and run the following:
 
 ```
-namaka check && namaka review
+namaka check || namaka review
 ```
 
 ## Name
