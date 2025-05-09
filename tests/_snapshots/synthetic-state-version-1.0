@@ -6,7 +6,7 @@
         devices = {
           synthetic-glotzbert = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-SSD0240S00_20201124BC41037-part2";
+            device = "/dev/disk/by-partlabel/36190e643888215c5119e087bf05c5d71c0b";
             name = "synthetic-glotzbert";
           };
         };
@@ -33,7 +33,7 @@
     };
     "/boot" = {
       depends = [ ];
-      device = "/dev/disk/by-id/ata-SSD0240S00_20201124BC41037-part1";
+      device = "/dev/disk/by-partlabel/ESP";
       fsType = "vfat";
       mountPoint = "/boot";
       neededForBoot = false;

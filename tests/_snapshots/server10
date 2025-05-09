@@ -6,7 +6,7 @@
         devices = {
           server10-root = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203733F-part2";
+            device = "/dev/disk/by-partlabel/93329d8cd05bd8edee5d54e7463c124f193c";
             name = "server10-root";
           };
         };
@@ -33,7 +33,7 @@
     };
     "/boot" = {
       depends = [ ];
-      device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203733F-part1";
+      device = "/dev/disk/by-partlabel/ESP";
       fsType = "vfat";
       mountPoint = "/boot";
       neededForBoot = false;

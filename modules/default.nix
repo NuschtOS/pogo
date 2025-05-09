@@ -22,12 +22,6 @@ in
             description = "Name of the disk.";
           };
 
-          partitionTableFormat = lib.mkOption {
-            type = lib.types.enum [ "gpt" "msdos" ];
-            default = "gpt";
-            description = "Which partitions table format to use.";
-          };
-
           withBoot = lib.mkOption {
             type = lib.types.bool;
             default = false;
@@ -133,32 +127,32 @@ in
               inherit (disk) device;
               type = "disk";
               content = {
-                type = "table";
-                format = disk.partitionTableFormat;
-                partitions = lib.optional withBoot {
-                  name = "ESP";
-                  start = "1MiB";
-                  end = "512MiB";
-                  bootable = true;
-                  content = {
-                    type = "filesystem";
-                    format = "vfat";
-                    mountpoint = lib.mkIf disk.withBoot "/boot"; # TODO: remove withBootPlacebo and do this properly
+                type = "gpt";
+                partitions = lib.optionalAttrs withBoot {
+                  ESP = {
+                    start = "1MiB";
+                    end = "512MiB";
+                    label = "ESP";
+                    priority = 1;
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = lib.mkIf disk.withBoot "/boot"; # TODO: remove withBootPlacebo and do this properly
+                    };
                   };
-                } ++ [
-                  {
-                    name = "root";
+                } // {
+                  root = {
                     start = if withBoot then "512MiB" else "1MiB";
                     end = "100%";
-                    part-type = "primary";
+                    priority = 2;
                     content = lib.optionalAttrs disk.withLuks {
                       type = "luks";
                       name = luksName;
                       askPassword = true;
                       inherit (zfs) content;
                     } // lib.optionalAttrs (!disk.withLuks) zfs.content;
-                  }
-                ];
+                  };
+                };
               };
             };
           } // {

@@ -6,37 +6,37 @@
         devices = {
           storage1-hdd-storage1 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/scsi-35000c500a6f5b8c3-part1";
+            device = "/dev/disk/by-partlabel/054d727c7646bdb8d21316954cbf0192cc05";
             name = "storage1-hdd-storage1";
           };
           storage1-hdd-storage2 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/scsi-35000c500a71f2a63-part1";
+            device = "/dev/disk/by-partlabel/17ef9fc5a038ead94d23d94c37e04a55fe73";
             name = "storage1-hdd-storage2";
           };
           storage1-hdd-storage3 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/scsi-35000c500a6f62857-part1";
+            device = "/dev/disk/by-partlabel/c350873488bc8b2268db1e2e1524be8cc621";
             name = "storage1-hdd-storage3";
           };
           storage1-root1 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN-part2";
+            device = "/dev/disk/by-partlabel/b564c235c585fa516979f2469131edafc928";
             name = "storage1-root1";
           };
           storage1-root2 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601N6480BGN-part2";
+            device = "/dev/disk/by-partlabel/1f1886cde85b45793c04dade76737ebcea88";
             name = "storage1-root2";
           };
           storage1-ssd-microvm1 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203728K-part1";
+            device = "/dev/disk/by-partlabel/b2c22468c9335d6fa947e9dad30155a09f0f";
             name = "storage1-ssd-microvm1";
           };
           storage1-ssd-microvm2 = {
             bypassWorkqueues = false;
-            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203731L-part1";
+            device = "/dev/disk/by-partlabel/5f0f6cf31b64d92fa7eadefea69f8674ed66";
             name = "storage1-ssd-microvm2";
           };
         };
@@ -63,7 +63,7 @@
     };
     "/boot" = {
       depends = [ ];
-      device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN-part1";
+      device = "/dev/disk/by-partlabel/ESP";
       fsType = "vfat";
       mountPoint = "/boot";
       neededForBoot = false;

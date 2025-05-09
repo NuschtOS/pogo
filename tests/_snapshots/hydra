@@ -27,7 +27,7 @@
     };
     "/boot" = {
       depends = [ ];
-      device = "/dev/disk/by-id/ata-CT2000MX500SSD1_2039E4B20F95-part1";
+      device = "/dev/disk/by-partlabel/ESP";
       fsType = "vfat";
       mountPoint = "/boot";
       neededForBoot = false;
