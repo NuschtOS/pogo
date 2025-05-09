@@ -1,11 +1,11 @@
 # Pogo
 
-Pogo is an opinionated module building on top of [disk](http://github.com/nix-community/disko/).
-Right now it offers an high level abstraction for ZFS including good defaults and a starter dataset layout.
+Pogo is an opinionated module for Nix building on top of [disko](http://github.com/nix-community/disko/).
+Right now it offers a high level abstraction for ZFS including good defaults and a starter dataset layout.
 
 ## Name
 
-The name is not a silly joke of Disco Pogo from Die Atzen.
+The name is not a silly joke of *Disco Pogo* from *Die Atzen*.
 
 ## Contact
 
