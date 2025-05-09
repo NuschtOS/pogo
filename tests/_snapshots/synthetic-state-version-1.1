@@ -113,7 +113,7 @@
     };
     "/var/backup" = {
       depends = [ ];
-      device = "synthetic-glotzbert/data/backup";
+      device = "synthetic-glotzbert/data/var/backup";
       fsType = "zfs";
       mountPoint = "/var/backup";
       neededForBoot = false;
@@ -127,6 +127,18 @@
       device = "synthetic-glotzbert/data/var/lib";
       fsType = "zfs";
       mountPoint = "/var/lib";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/log" = {
+      depends = [ ];
+      device = "synthetic-glotzbert/data/var/log";
+      fsType = "zfs";
+      mountPoint = "/var/log";
       neededForBoot = false;
       options = [
         "x-initrd.mount"

@@ -217,13 +217,16 @@ in
                   "root" = lib.recursiveUpdate (dataset "/") {
                     options."com.sun:auto-snapshot" = true;
                   };
-                  # used by services.postgresqlBackup and later by restic
-                  "data/backup" = dataset "/var/backup";
                   "data/etc" = dataset "/etc";
                 } // (if lib.versionAtLeast version "1.1" then {
                   "data/var" = dataset "/var";
+                  # used by services.postgresqlBackup and later by restic
+                  "data/var/backup" = dataset "/var/backup";
                   "data/var/lib" = dataset "/var/lib";
+                  "data/var/log" = dataset "/var/log";
                 } else {
+                  # used by services.postgresqlBackup and later by restic
+                  "data/backup" = dataset "/var/backup";
                   "data/lib" = dataset "/var/lib";
                 }) // {
                   "home" = dataset "/home" // {
