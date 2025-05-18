@@ -53,7 +53,9 @@
                 attrs
               ];
             }) config;
-          in {
+          in
+            assert config.system.build.diskoScript.outPath != "";
+          {
             # only compare some key values to not break on every change
             boot = {
               initrd.luks.devices = lib.mapAttrs (n: v: lib.filterAttrs (n: v: lib.any (x: x == n ) [
