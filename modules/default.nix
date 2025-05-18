@@ -201,7 +201,7 @@ in
                 in
                 {
                   "data" = lib.recursiveUpdate datasetNoMount {
-                    options."com.sun:auto-snapshot" = true;
+                    options."com.sun:auto-snapshot" = "true";
                   };
                   # zfs uses copy on write and requires some free space to delete files when the disk is completely filled
                   "reserved" = lib.recursiveUpdate (dataset "reserved") {
@@ -215,7 +215,7 @@ in
                   };
                 } // lib.optionalAttrs withBoot ({
                   "root" = lib.recursiveUpdate (dataset "/") {
-                    options."com.sun:auto-snapshot" = true;
+                    options."com.sun:auto-snapshot" = "true";
                   };
                   "data/etc" = dataset "/etc";
                 } // (if lib.versionAtLeast version "1.1" then {
@@ -230,7 +230,7 @@ in
                   "data/lib" = dataset "/var/lib";
                 }) // {
                   "home" = dataset "/home" // {
-                    options."com.sun:auto-snapshot" = true;
+                    options."com.sun:auto-snapshot" = "true";
                   };
                   "nix" = lib.recursiveUpdate (dataset "/nix") {
                     options.atime = "off";
