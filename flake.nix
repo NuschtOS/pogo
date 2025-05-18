@@ -78,7 +78,7 @@
               "options"
             ]) v) config.fileSystems;
 
-            swapDevices = config.swapDevices;
+            inherit (config) swapDevices;
           };
         };
       };
