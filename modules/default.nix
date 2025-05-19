@@ -161,7 +161,7 @@ in
                 ];
               };
             };
-          } // {
+          } // (lib.optionalAttrs disk.withZfs {
             zpool.${zfsName} = {
               type = "zpool";
               mode = lib.mkIf (disk.zfsMode != null) disk.zfsMode;
@@ -239,7 +239,7 @@ in
                   "nix/var" = dataset "/nix/var";
                 });
             };
-          })
+          }))
         cfg));
     };
   };
