@@ -25,7 +25,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, disko, flake-utils, haumea, namaka, nixpkgs }: {
+  outputs = { self, disko, flake-utils, namaka, nixpkgs, ... }: {
     nixosModules = rec {
       default = pogo;
       pogo.imports = [
