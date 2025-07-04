@@ -61,7 +61,7 @@ in
           };
 
           zfsMode = lib.mkOption {
-            type = lib.types.deferredModule;
+            type = with lib.types; nullOr deferredModule;
             default = null;
             description = ''
               The mode of this zpool. Valid values include mirror and raidz1.
