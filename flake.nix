@@ -59,7 +59,6 @@
             # only compare some key values to not break on every change
             boot = {
               initrd.luks.devices = lib.mapAttrs (n: v: lib.filterAttrs (n: v: lib.any (x: x == n ) [
-                "bypassWorkqueues"
                 "device"
                 "name"
               ]) v) config.boot.initrd.luks.devices;

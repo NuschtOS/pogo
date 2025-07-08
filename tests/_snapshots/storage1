@@ -5,37 +5,30 @@
       luks = {
         devices = {
           storage1-hdd-storage1 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/scsi-35000c500a6f5b8c3-part1";
             name = "storage1-hdd-storage1";
           };
           storage1-hdd-storage2 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/scsi-35000c500a71f2a63-part1";
             name = "storage1-hdd-storage2";
           };
           storage1-hdd-storage3 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/scsi-35000c500a6f62857-part1";
             name = "storage1-hdd-storage3";
           };
           storage1-root1 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN-part2";
             name = "storage1-root1";
           };
           storage1-root2 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601N6480BGN-part2";
             name = "storage1-root2";
           };
           storage1-ssd-microvm1 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203728K-part1";
             name = "storage1-ssd-microvm1";
           };
           storage1-ssd-microvm2 = {
-            bypassWorkqueues = false;
             device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203731L-part1";
             name = "storage1-ssd-microvm2";
           };
