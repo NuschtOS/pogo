@@ -13,7 +13,7 @@
     };
     loader = {
       grub = {
-        devices = [ ];
+        mirroredBoots = [ ];
       };
     };
   };

@@ -4,47 +4,40 @@
     initrd = {
       luks = {
         devices = {
-          storage1-hdd-storage1 = {
-            device = "/dev/disk/by-id/scsi-35000c500a6f5b8c3-part1";
-            name = "storage1-hdd-storage1";
+          nixos-root1 = {
+            device = "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HCHP-00003_S1YJNX0H401022-part2";
+            name = "nixos-root1";
           };
-          storage1-hdd-storage2 = {
-            device = "/dev/disk/by-id/scsi-35000c500a71f2a63-part1";
-            name = "storage1-hdd-storage2";
-          };
-          storage1-hdd-storage3 = {
-            device = "/dev/disk/by-id/scsi-35000c500a6f62857-part1";
-            name = "storage1-hdd-storage3";
-          };
-          storage1-root1 = {
-            device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN-part2";
-            name = "storage1-root1";
-          };
-          storage1-root2 = {
-            device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601N6480BGN-part2";
-            name = "storage1-root2";
-          };
-          storage1-ssd-microvm1 = {
-            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203728K-part1";
-            name = "storage1-ssd-microvm1";
-          };
-          storage1-ssd-microvm2 = {
-            device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203731L-part1";
-            name = "storage1-ssd-microvm2";
+          nixos-root2 = {
+            device = "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HMHQ-00005_S2UJNX0H801406-part2";
+            name = "nixos-root2";
           };
         };
       };
     };
     loader = {
       grub = {
-        mirroredBoots = [ ];
+        mirroredBoots = [
+          {
+            devices = [
+              "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HCHP-00003_S1YJNX0H401022"
+            ];
+            path = "/boot1";
+          }
+          {
+            devices = [
+              "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HMHQ-00005_S2UJNX0H801406"
+            ];
+            path = "/boot2";
+          }
+        ];
       };
     };
   };
   fileSystems = {
     "/" = {
       depends = [ ];
-      device = "storage1-root/root";
+      device = "nixos-root/root";
       fsType = "zfs";
       mountPoint = "/";
       neededForBoot = false;
@@ -54,19 +47,9 @@
         "zfsutil"
       ];
     };
-    "/boot" = {
-      depends = [ ];
-      device = "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN-part1";
-      fsType = "vfat";
-      mountPoint = "/boot";
-      neededForBoot = false;
-      options = [
-        "defaults"
-      ];
-    };
     "/etc" = {
       depends = [ ];
-      device = "storage1-root/data/etc";
+      device = "nixos-root/data/etc";
       fsType = "zfs";
       mountPoint = "/etc";
       neededForBoot = false;
@@ -78,7 +61,7 @@
     };
     "/home" = {
       depends = [ ];
-      device = "storage1-root/home";
+      device = "nixos-root/home";
       fsType = "zfs";
       mountPoint = "/home";
       neededForBoot = false;
@@ -89,7 +72,7 @@
     };
     "/nix" = {
       depends = [ ];
-      device = "storage1-root/nix";
+      device = "nixos-root/nix";
       fsType = "zfs";
       mountPoint = "/nix";
       neededForBoot = false;
@@ -101,7 +84,7 @@
     };
     "/nix/store" = {
       depends = [ ];
-      device = "storage1-root/nix/store";
+      device = "nixos-root/nix/store";
       fsType = "zfs";
       mountPoint = "/nix/store";
       neededForBoot = false;
@@ -113,7 +96,7 @@
     };
     "/nix/var" = {
       depends = [ ];
-      device = "storage1-root/nix/var";
+      device = "nixos-root/nix/var";
       fsType = "zfs";
       mountPoint = "/nix/var";
       neededForBoot = false;
@@ -122,9 +105,21 @@
         "zfsutil"
       ];
     };
+    "/var" = {
+      depends = [ ];
+      device = "nixos-root/data/var";
+      fsType = "zfs";
+      mountPoint = "/var";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
     "/var/backup" = {
       depends = [ ];
-      device = "storage1-root/data/backup";
+      device = "nixos-root/data/var/backup";
       fsType = "zfs";
       mountPoint = "/var/backup";
       neededForBoot = false;
@@ -135,9 +130,21 @@
     };
     "/var/lib" = {
       depends = [ ];
-      device = "storage1-root/data/lib";
+      device = "nixos-root/data/var/lib";
       fsType = "zfs";
       mountPoint = "/var/lib";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/log" = {
+      depends = [ ];
+      device = "nixos-root/data/var/log";
+      fsType = "zfs";
+      mountPoint = "/var/log";
       neededForBoot = false;
       options = [
         "x-initrd.mount"

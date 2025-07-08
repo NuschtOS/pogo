@@ -34,10 +34,22 @@ in
             description = "Whether to include a boot partition.";
           };
 
+          bootDir = lib.mkOption {
+            type = lib.types.str;
+            default = "/boot";
+            description = "The path to the directory where the boot directory is mounted. This can be used for `boot.loader.grub.mirroredBoots`.";
+          };
+
           withBootPlacebo = lib.mkOption {
             type = lib.types.bool;
             default = false;
             description = "Whether to include a boot partition that is not mounted.";
+          };
+
+          withMirroredBoot = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Whether to write this disk with the configured `bootDir` into `boot.loader.grub.mirroredBoots`.";
           };
 
           # TODO: bring function back
@@ -111,13 +123,18 @@ in
       ])
       cfg));
 
+    boot.loader.grub.mirroredBoots = map (disk: {
+      devices = [ disk.device ];
+      path = disk.bootDir;
+    }) (lib.filter (disk: disk.withMirroredBoot) cfg);
+
     disko = {
       devices = lib.mkIf (cfg != [ ]) (lib.foldl' (a: b: lib.recursiveUpdate a b) { } (map
         (disk:
           let
             diskName = if disk.name == "" then "" else "-"+disk.name;
             luksName = "${config.networking.hostName}${diskName}";
-            withBoot = disk.withBoot || disk.withBootPlacebo;
+            withBoot = disk.withBoot || disk.withBootPlacebo || disk.withMirroredBoot;
             version = config.disko.stateVersion;
             zfsName = config.networking.hostName + (if disk.zpoolName == "" then "" else "-"+disk.zpoolName);
             zfs = {
@@ -143,7 +160,7 @@ in
                   content = {
                     type = "filesystem";
                     format = "vfat";
-                    mountpoint = lib.mkIf disk.withBoot "/boot"; # TODO: remove withBootPlacebo and do this properly
+                    mountpoint = lib.mkIf disk.withBoot disk.bootDir; # TODO: remove withBootPlacebo and do this properly
                   };
                 } ++ [
                   {

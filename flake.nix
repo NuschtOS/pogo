@@ -63,7 +63,9 @@
                 "name"
               ]) v) config.boot.initrd.luks.devices;
 
-              loader.grub.devices = config.boot.loader.grub.devices;
+              loader.grub = {
+                mirroredBoots = map (device: { inherit (device) devices path; }) config.boot.loader.grub.mirroredBoots;
+              };
             };
 
             fileSystems = lib.mapAttrs (n: v: lib.filterAttrs (n: v: lib.any (x: x == n) [
