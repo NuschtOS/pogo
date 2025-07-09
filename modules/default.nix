@@ -160,7 +160,7 @@ in
                   content = {
                     type = "filesystem";
                     format = "vfat";
-                    mountpoint = lib.mkIf disk.withBoot disk.bootDir; # TODO: remove withBootPlacebo and do this properly
+                    mountpoint = lib.mkIf (disk.withBoot || disk.withMirroredBoot) disk.bootDir; # TODO: remove withBootPlacebo and do this properly
                   };
                 } ++ [
                   {

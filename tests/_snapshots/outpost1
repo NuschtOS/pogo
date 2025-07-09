@@ -47,6 +47,26 @@
         "zfsutil"
       ];
     };
+    "/boot1" = {
+      depends = [ ];
+      device = "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HCHP-00003_S1YJNX0H401022-part1";
+      fsType = "vfat";
+      mountPoint = "/boot1";
+      neededForBoot = false;
+      options = [
+        "defaults"
+      ];
+    };
+    "/boot2" = {
+      depends = [ ];
+      device = "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HMHQ-00005_S2UJNX0H801406-part1";
+      fsType = "vfat";
+      mountPoint = "/boot2";
+      neededForBoot = false;
+      options = [
+        "defaults"
+      ];
+    };
     "/etc" = {
       depends = [ ];
       device = "nixos-root/data/etc";
