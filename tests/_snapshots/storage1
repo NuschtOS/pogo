@@ -4,6 +4,18 @@
     initrd = {
       luks = {
         devices = {
+          storage1-hdd-media1 = {
+            device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA3LLT-part1";
+            name = "storage1-hdd-media1";
+          };
+          storage1-hdd-media2 = {
+            device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA0B5T-part1";
+            name = "storage1-hdd-media2";
+          };
+          storage1-hdd-media3 = {
+            device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FKJAV6U-part1";
+            name = "storage1-hdd-media3";
+          };
           storage1-hdd-storage1 = {
             device = "/dev/disk/by-id/scsi-35000c500a6f5b8c3-part1";
             name = "storage1-hdd-storage1";

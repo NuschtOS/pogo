@@ -53,6 +53,37 @@ eval {
         zfsMode = "raidz1";
         zpoolName = "hdd-storage";
       }
+
+      # media
+      {
+        device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA3LLT";
+        name = "hdd-media1";
+        zfsMode = "mirror";
+        zpoolName = "hdd-media";
+      }
+      {
+        device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA0B5T";
+        name = "hdd-media2";
+        zfsMode = "mirror";
+        zpoolName = "hdd-media";
+      }
+      {
+        device = "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FKJAV6U";
+        name = "hdd-media3";
+        # https://github.com/nix-community/disko/blob/83c4da299c1d7d300f8c6fd3a72ac46cb0d59aae/example/zfs-with-vdevs.nix#L243-L299
+        zfsMode.topology = {
+          spare = [ "hdd-media3" ];
+          type = "topology";
+          vdev = [ {
+            mode = "mirror";
+            members = [
+              "hdd-media1"
+              "hdd-media2"
+            ];
+          } ];
+        };
+        zpoolName = "hdd-media";
+      }
     ];
     stateVersion = "1.0";
   };
