@@ -67,6 +67,11 @@
                 mirroredBoots = map (device: { inherit (device) devices path; }) config.boot.loader.grub.mirroredBoots;
               };
             };
+            disko.devices.disk = lib.mapAttrs (n: v: {
+              content.partitions = map (v: {
+                inherit (v) start end;
+              }) v.content.partitions;
+            }) config.disko.devices.disk;
 
             fileSystems = lib.mapAttrs (n: v: lib.filterAttrs (n: v: lib.any (x: x == n) [
               # # descend into all entries

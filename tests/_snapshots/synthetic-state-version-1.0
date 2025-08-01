@@ -17,6 +17,26 @@
       };
     };
   };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/ata-SSD0240S00_20201124BC41037" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
   fileSystems = {
     "/" = {
       depends = [ ];

@@ -34,6 +34,40 @@
       };
     };
   };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HCHP-00003_S1YJNX0H401022" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-SAMSUNG_MZ7LM480HMHQ-00005_S2UJNX0H801406" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
   fileSystems = {
     "/" = {
       depends = [ ];

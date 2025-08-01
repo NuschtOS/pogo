@@ -92,7 +92,7 @@ in
     };
 
     stateVersion = lib.mkOption {
-      type = lib.types.enum [ "1.0" "1.1" ];
+      type = lib.types.enum [ "1.0" "1.1" "1.2" ];
       description = ''
         This option makes sure that the fileSystem output for a system never changes.
         This option can be manually bumped but the it is the end users duty to make sure that everything has been manually changed accordingly!
@@ -144,6 +144,7 @@ in
                 type = "zfs";
               };
             };
+            bootPartitionSize = if lib.versionAtLeast version "1.2" then "1Gib" else "512MiB";
           in
           {
             disk.${disk.device} = {
@@ -155,7 +156,7 @@ in
                 partitions = lib.optional withBoot {
                   name = "ESP";
                   start = "1MiB";
-                  end = "512MiB";
+                  end = bootPartitionSize;
                   bootable = true;
                   content = {
                     type = "filesystem";
@@ -165,7 +166,7 @@ in
                 } ++ [
                   {
                     name = "root";
-                    start = if withBoot then "512MiB" else "1MiB";
+                    start = if withBoot then bootPartitionSize else "1MiB";
                     end = "100%";
                     part-type = "primary";
                     content = lib.optionalAttrs disk.withLuks {

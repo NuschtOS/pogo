@@ -12,6 +12,26 @@
       };
     };
   };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/ata-CT2000MX500SSD1_2039E4B20F95" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
   fileSystems = {
     "/" = {
       depends = [ ];

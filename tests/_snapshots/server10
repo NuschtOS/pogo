@@ -17,6 +17,26 @@
       };
     };
   };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203733F" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
   fileSystems = {
     "/" = {
       depends = [ ];

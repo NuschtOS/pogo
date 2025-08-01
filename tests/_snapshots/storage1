@@ -53,6 +53,120 @@
       };
     };
   };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601N6480BGN" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-SSDSC2KB480G8R_PHYF847601NQ480BGN" = {
+          content = {
+            partitions = [
+              {
+                end = "512MiB";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "512MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203728K" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_1TB_S3Z9NB0M203731L" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA0B5T" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FJA3LLT" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/ata-WDC_WUH721818ALE6L4_3FKJAV6U" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/scsi-35000c500a6f5b8c3" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/scsi-35000c500a6f62857" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+        "/dev/disk/by-id/scsi-35000c500a71f2a63" = {
+          content = {
+            partitions = [
+              {
+                end = "100%";
+                start = "1MiB";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
   fileSystems = {
     "/" = {
       depends = [ ];
