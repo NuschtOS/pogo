@@ -40,6 +40,12 @@ in
             description = "The path to the directory where the boot directory is mounted. This can be used for `boot.loader.grub.mirroredBoots`.";
           };
 
+          passwordFile = lib.mkOption {
+            type = with lib.types; nullOr str;
+            default = null;
+            description = "Path to a password file which contains the password for this partition. If set to null, the user is interactively asked for it.";
+          };
+
           withBootPlacebo = lib.mkOption {
             type = lib.types.bool;
             default = false;
@@ -169,12 +175,15 @@ in
                     start = if withBoot then bootPartitionSize else "1MiB";
                     end = "100%";
                     part-type = "primary";
-                    content = lib.optionalAttrs disk.withLuks {
+                    content = lib.optionalAttrs disk.withLuks ({
                       type = "luks";
                       name = luksName;
-                      askPassword = true;
                       inherit (zfs) content;
-                    } // lib.optionalAttrs (!disk.withLuks) zfs.content;
+                    } // (if disk.passwordFile == null then {
+                      askPassword = true;
+                    } else {
+                      inherit (disk) passwordFile;
+                    })) // lib.optionalAttrs (!disk.withLuks) zfs.content;
                   }
                 ];
               };
