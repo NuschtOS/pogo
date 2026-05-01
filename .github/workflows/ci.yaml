@@ -30,13 +30,13 @@ jobs:
           primary-key: nix-${{ runner.os }}-${{ matrix.target }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
           restore-prefixes-first-match: nix-${{ runner.os }}-${{ matrix.target }}-
 
-      - name: build stable
+      - name: nix flake check - stable
         if: matrix.target != 'unstable'
         run: |
           nix flake check -L \
             --override-input nixpkgs github:NixOS/nixpkgs/nixos-${{ matrix.target }}
 
-      - name: build unstable
+      - name: nix flake check - unstable
         if: matrix.target == 'unstable'
         run: |
           nix flake check -L
