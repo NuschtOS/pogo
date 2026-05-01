@@ -37,6 +37,17 @@
       };
     };
   };
-  fileSystems = { };
+  fileSystems = {
+    "/boot" = {
+      depends = [ ];
+      device = "/dev/disk/by-id/ata-SSD0240S00_20201124BC41037-part1";
+      fsType = "vfat";
+      mountPoint = "/boot";
+      neededForBoot = false;
+      options = [
+        "defaults"
+      ];
+    };
+  };
   swapDevices = [ ];
 }

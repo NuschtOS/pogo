@@ -7,7 +7,7 @@ eval {
     disks = [ {
       device = "/dev/disk/by-id/ata-SSD0240S00_20201124BC41037";
       name = "glotzbert";
-      withBootPlacebo = true;
+      withBoot = true;
       withZfs = false;
     } ];
     stateVersion = "1.1";
