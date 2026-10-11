@@ -1,0 +1,166 @@
+#pretty
+{
+  boot = {
+    initrd = {
+      luks = {
+        devices = { };
+      };
+    };
+    loader = {
+      grub = {
+        mirroredBoots = [ ];
+      };
+    };
+  };
+  disko = {
+    devices = {
+      disk = {
+        "/dev/disk/by-id/nvme-APPLE_SSD_AP0256Q_0ba018e3e389402b" = {
+          content = {
+            partitions = [
+              {
+                end = "1Gib";
+                start = "1MiB";
+              }
+              {
+                end = "100%";
+                start = "1Gib";
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
+  fileSystems = {
+    "/" = {
+      depends = [ ];
+      device = "airbert-root/root";
+      fsType = "zfs";
+      mountPoint = "/";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/boot" = {
+      depends = [ ];
+      device = "/dev/disk/by-uuid/C987-1CFF";
+      fsType = "vfat";
+      mountPoint = "/boot";
+      neededForBoot = false;
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
+    "/etc" = {
+      depends = [ ];
+      device = "airbert-root/data/etc";
+      fsType = "zfs";
+      mountPoint = "/etc";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/home" = {
+      depends = [ ];
+      device = "airbert-root/home";
+      fsType = "zfs";
+      mountPoint = "/home";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix" = {
+      depends = [ ];
+      device = "airbert-root/nix";
+      fsType = "zfs";
+      mountPoint = "/nix";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix/store" = {
+      depends = [ ];
+      device = "airbert-root/nix/store";
+      fsType = "zfs";
+      mountPoint = "/nix/store";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/nix/var" = {
+      depends = [ ];
+      device = "airbert-root/nix/var";
+      fsType = "zfs";
+      mountPoint = "/nix/var";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var" = {
+      depends = [ ];
+      device = "airbert-root/data/var";
+      fsType = "zfs";
+      mountPoint = "/var";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/backup" = {
+      depends = [ ];
+      device = "airbert-root/data/var/backup";
+      fsType = "zfs";
+      mountPoint = "/var/backup";
+      neededForBoot = false;
+      options = [
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/lib" = {
+      depends = [ ];
+      device = "airbert-root/data/var/lib";
+      fsType = "zfs";
+      mountPoint = "/var/lib";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+    "/var/log" = {
+      depends = [ ];
+      device = "airbert-root/data/var/log";
+      fsType = "zfs";
+      mountPoint = "/var/log";
+      neededForBoot = false;
+      options = [
+        "x-initrd.mount"
+        "defaults"
+        "zfsutil"
+      ];
+    };
+  };
+  swapDevices = [ ];
+}

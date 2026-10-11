@@ -10,7 +10,7 @@ in
       type = lib.types.listOf (lib.types.submodule ({ config, ... }: {
         options = {
           device = lib.mkOption {
-            type = lib.types.str;
+            type = lib.types.path;
             default = null;
             example = "/dev/sda";
             description = "Path of the disk.";
@@ -34,8 +34,14 @@ in
             description = "Whether to include a boot partition.";
           };
 
+          bootDevice = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = "Optionally set the path of the boot device to something else than the auto generated value.";
+          };
+
           bootDir = lib.mkOption {
-            type = lib.types.str;
+            type = lib.types.path;
             default = "/boot";
             description = "The path to the directory where the boot directory is mounted. This can be used for `boot.loader.grub.mirroredBoots`.";
           };
@@ -166,8 +172,10 @@ in
                   bootable = true;
                   content = {
                     type = "filesystem";
+                    device = lib.mkIf (disk.bootDevice != null) disk.bootDevice;
                     format = "vfat";
                     mountpoint = lib.mkIf (disk.withBoot || disk.withMirroredBoot) disk.bootDir; # TODO: remove withBootPlacebo and do this properly
+                    mountOptions = [ "fmask=0022" "dmask=0022" ];
                   };
                 } ++ [
                   {
