@@ -10,7 +10,7 @@ in
       type = lib.types.listOf (lib.types.submodule ({ config, ... }: {
         options = {
           device = lib.mkOption {
-            type = lib.types.str;
+            type = lib.types.path;
             default = null;
             example = "/dev/sda";
             description = "Path of the disk.";
@@ -35,7 +35,7 @@ in
           };
 
           bootDir = lib.mkOption {
-            type = lib.types.str;
+            type = lib.types.path;
             default = "/boot";
             description = "The path to the directory where the boot directory is mounted. This can be used for `boot.loader.grub.mirroredBoots`.";
           };
