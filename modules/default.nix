@@ -175,6 +175,7 @@ in
                     device = lib.mkIf (disk.bootDevice != null) disk.bootDevice;
                     format = "vfat";
                     mountpoint = lib.mkIf (disk.withBoot || disk.withMirroredBoot) disk.bootDir; # TODO: remove withBootPlacebo and do this properly
+                    mountOptions = [ "fmask=0022" "dmask=0022" ];
                   };
                 } ++ [
                   {

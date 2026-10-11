@@ -88,7 +88,8 @@
       mountPoint = "/boot1";
       neededForBoot = false;
       options = [
-        "defaults"
+        "fmask=0022"
+        "dmask=0022"
       ];
     };
     "/boot2" = {
@@ -98,7 +99,8 @@
       mountPoint = "/boot2";
       neededForBoot = false;
       options = [
-        "defaults"
+        "fmask=0022"
+        "dmask=0022"
       ];
     };
     "/etc" = {

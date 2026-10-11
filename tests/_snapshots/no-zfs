@@ -45,7 +45,8 @@
       mountPoint = "/boot";
       neededForBoot = false;
       options = [
-        "defaults"
+        "fmask=0022"
+        "dmask=0022"
       ];
     };
   };
