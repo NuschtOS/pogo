@@ -34,6 +34,12 @@ in
             description = "Whether to include a boot partition.";
           };
 
+          bootDevice = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = "Optionally set the path of the boot device to something else than the auto generated value.";
+          };
+
           bootDir = lib.mkOption {
             type = lib.types.path;
             default = "/boot";
@@ -166,6 +172,7 @@ in
                   bootable = true;
                   content = {
                     type = "filesystem";
+                    device = lib.mkIf (disk.bootDevice != null) disk.bootDevice;
                     format = "vfat";
                     mountpoint = lib.mkIf (disk.withBoot || disk.withMirroredBoot) disk.bootDir; # TODO: remove withBootPlacebo and do this properly
                   };
